@@ -1,5 +1,5 @@
 <template>
-  <div id="container" onresize="windowSize">
+  <div id="container" v-on:load="windowSize()">
     <h1>{{msg}}</h1>
     <p>Sample</p>
     <p>{{windowWidth}}</p>
@@ -17,9 +17,12 @@ export default {
       windowHeight: 0
     }
   },
+  method: {
+    windowSize: function () {
+      console.log('window resize')
+    }
+  },
   created: function () {
-    this.windowWidth = window.outerWidth
-    this.windowHeight = window.outerHeight
   }
 }
 </script>
