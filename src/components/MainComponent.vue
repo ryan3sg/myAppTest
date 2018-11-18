@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div id="container" :class="setOrientation">
     <h1>{{msg}}</h1>
     <p>
       Width: {{ window.width }} <br />
@@ -20,11 +20,23 @@ export default {
       }
     }
   },
+  computed: {
+    setOrientation () {
+      return this.$store.getters.getOrientation
+    }
+  },
   created () {
     this.window = {
       width: window.innerWidth,
       height: window.innerHeight
     }
+    var x
+    if (this.window.width > this.window.height) {
+      x = 'landscape'
+    } else {
+      x = 'portrait'
+    }
+    this.$store.commit('setOrientation', x)
     window.addEventListener('resize', this.handleResize)
   },
   methods: {
@@ -33,11 +45,13 @@ export default {
         width: document.body.offsetWidth,
         height: document.body.offsetHeight
       }
+      var x
       if (this.window.width > this.window.height) {
-        this.$store.commit('setOrientation', 'portrait')
+        x = 'landscape'
       } else {
-        this.$store.commit('setOrientation', 'landscape')
+        x = 'portrait'
       }
+      this.$store.commit('setOrientation', x)
     }
   }
 }

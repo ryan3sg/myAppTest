@@ -1,12 +1,17 @@
 <template>
-  <div id="app">
+  <div id="app" :class="setOrientation">
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    setOrientation () {
+      return this.$store.getters.getOrientation
+    }
+  }
 }
 </script>
 

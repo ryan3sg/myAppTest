@@ -3,25 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vuex from 'vuex'
-import state from '@/vuex/state'
-import actions from '@/vuex/actions'
-import getters from '@/vuex/getters'
-import mutation from '@/vuex/mutation'
-
-Vue.use(Vuex)
+import store from '@/vuex/store'
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
-})
-/* eslint-disable no-new */
-new Vuex.Store({
-  state,
-  getters,
-  mutation,
-  actions
 })
