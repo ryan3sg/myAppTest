@@ -1,1 +1,4 @@
-/* eslint-disable */
+export default {
+  actions: {
+  }
+}

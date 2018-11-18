@@ -4,24 +4,24 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuex from 'vuex'
-import store from '@/vuex/store'
-import getters from '@/vuex/getters'
+import state from '@/vuex/state'
 import actions from '@/vuex/actions'
+import getters from '@/vuex/getters'
 import mutation from '@/vuex/mutation'
-
-Vue.config.productionTip = false
-
-/* eslint-disable no-new */
 
 Vue.use(Vuex)
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  store: store,
-  getters: getters,
-  actions: actions,
-  mutation: mutation,
   components: { App },
   template: '<App/>'
+})
+/* eslint-disable no-new */
+new Vuex.Store({
+  state,
+  getters,
+  mutation,
+  actions
 })

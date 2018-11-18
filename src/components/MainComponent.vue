@@ -1,9 +1,10 @@
 <template>
-  <div id="container" v-on:load="windowSize()">
+  <div id="container">
     <h1>{{msg}}</h1>
-    <p>Sample</p>
-    <p>{{windowWidth}}</p>
-    <p>{{windowHeight}}</p>
+    <p>
+      Width: {{ window.width }} <br />
+      Height: {{ window.height }}
+    </p>
   </div>
 </template>
 
@@ -13,22 +14,35 @@ export default {
   data () {
     return {
       msg: 'Whats your plan for today?',
-      windowWidth: 0,
-      windowHeight: 0
+      window: {
+        width: '',
+        height: ''
+      }
     }
   },
-  method: {
-    windowSize: function () {
-      console.log('window resize')
+  created () {
+    this.window = {
+      width: window.innerWidth,
+      height: window.innerHeight
     }
+    window.addEventListener('resize', this.handleResize)
   },
-  created: function () {
+  methods: {
+    handleResize: function () {
+      this.window = {
+        width: document.body.offsetWidth,
+        height: document.body.offsetHeight
+      }
+      if (this.window.width > this.window.height) {
+        this.$store.commit('setOrientation', 'portrait')
+      } else {
+        this.$store.commit('setOrientation', 'landscape')
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-  h1 {
-    font-weight: normal;
-  }
+  @import url(../compass/mainComponent.scss);
 </style>
