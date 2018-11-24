@@ -1,16 +1,16 @@
 <template>
-  <div id="container" :class="setOrientation">
-    <h1>{{msg}}</h1>
-    <p>
-      Width: {{ window.width }} <br />
-      Height: {{ window.height }}
-    </p>
+  <div>
+    <p>Main Component</p>
+    <p>{{orientation}}</p>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'MainComponent',
+  components: {
+  },
   data () {
     return {
       msg: 'Whats your plan for today?',
@@ -21,8 +21,9 @@ export default {
     }
   },
   computed: {
-    setOrientation () {
-      return this.$store.getters.getOrientation
+    orientation () {
+      console.log(this.$store.getters)
+      return this.$store.getters.getX('orientation')
     }
   },
   created () {

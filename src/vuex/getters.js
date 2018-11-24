@@ -1,6 +1,5 @@
 export default {
-  getOrientation: (state) => {
-    console.log('getOrientation', state.orientation)
-    return state.orientation
+  getX: (state) => (data) => {
+    return state[data]
   }
 }
